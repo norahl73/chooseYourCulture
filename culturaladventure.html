@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural Journey: A Tale of Two Worlds</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .scene-container {
+            padding: 40px;
+            min-height: 500px;
+        }
+
+        .character-display {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(180deg, #e0f7fa 0%, #b2ebf2 100%);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .character {
+            font-size: 120px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .scene-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 60px;
+            opacity: 0.3;
+        }
+
+        .story-text {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .choices {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .choice-btn {
+            flex: 1;
+            min-width: 250px;
+            padding: 25px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .choice-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.3);
+            transition: left 0.5s ease;
+        }
+
+        .choice-btn:hover::before {
+            left: 100%;
+        }
+
+        .korean-choice {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+        }
+
+        .korean-choice:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255,107,107,0.6);
+        }
+
+        .afghan-choice {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(78,205,196,0.4);
+        }
+
+        .afghan-choice:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(78,205,196,0.6);
+        }
+
+        .choice-label {
+            font-size: 0.85em;
+            opacity: 0.9;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .restart-btn {
+            margin-top: 20px;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+        }
+
+        .restart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102,126,234,0.6);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .choices {
+                flex-direction: column;
+            }
+            
+            .choice-btn {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌏 Cultural Journey 🌏</h1>
+            <p>A Tale of Two Worlds: Korean & Afghan</p>
+        </div>
+        
+        <div class="scene-container" id="sceneContainer">
+            <!-- Dynamic content will be inserted here -->
+        </div>
+    </div>
+
+    <script>
+        const gameState = {
+            currentScene: 'start',
+            koreanChoices: 0,
+            afghanChoices: 0,
+            path: []
+        };
+
+        const scenes = {
+            start: {
+                character: '🧑',
+                background: ['🏔️', '🌸'],
+                text: "You wake up in a mystical place between two worlds. To your left, you see cherry blossoms and traditional temples. To your right, you see mountain peaks and ornate carpets. You must choose your path...",
+                choices: [
+                    {
+                        text: "Visit the Korean tea house for morning tea",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_morning"
+                    },
+                    {
+                        text: "Join the Afghan family for morning chai",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_morning"
+                    }
+                ]
+            },
+            
+            korean_morning: {
+                character: '🍵',
+                background: ['🌸', '🏯'],
+                text: "You enter a serene Korean tea house. The aroma of traditional tea fills the air. An elder offers you a choice of activities to honor the morning.",
+                choices: [
+                    {
+                        text: "Practice Taekwondo with the local dojang",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_taekwondo"
+                    },
+                    {
+                        text: "Learn to prepare Kabuli Pulao instead",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "cooking_kabuli"
+                    }
+                ]
+            },
+            
+            afghan_morning: {
+                character: '☕',
+                background: ['🏔️', '🕌'],
+                text: "You sit on beautiful Afghan rugs as the family serves you hot chai with naan. The hospitality is warm and welcoming. They invite you to join their daily activities.",
+                choices: [
+                    {
+                        text: "Help weave a traditional Afghan carpet",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_carpet"
+                    },
+                    {
+                        text: "Join a Korean cooking class for kimchi-making",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_kimchi"
+                    }
+                ]
+            },
+            
+            korean_taekwondo: {
+                character: '🥋',
+                background: ['⚡', '🏆'],
+                text: "You bow respectfully and begin your Taekwondo training. The discipline and focus required are incredible. After training, you're invited to a celebration.",
+                choices: [
+                    {
+                        text: "Attend a K-pop dance workshop",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_kpop"
+                    },
+                    {
+                        text: "Join an Afghan music session with rubab",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_music"
+                    }
+                ]
+            },
+            
+            cooking_kabuli: {
+                character: '🍚',
+                background: ['🥕', '🍖'],
+                text: "You learn to prepare the national dish of Afghanistan - Kabuli Pulao. The aromatic rice with raisins and carrots is spectacular. The family shares stories of their heritage.",
+                choices: [
+                    {
+                        text: "Visit Bamiyan to see historical sites",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_history"
+                    },
+                    {
+                        text: "Travel to Gyeongbokgung Palace in Seoul",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_palace"
+                    }
+                ]
+            },
+            
+            afghan_carpet: {
+                character: '🧶',
+                background: ['🎨', '✨'],
+                text: "You learn the intricate art of Afghan carpet weaving. Each knot tells a story, and the patterns have been passed down through generations. It's meditative and beautiful.",
+                choices: [
+                    {
+                        text: "Attend a traditional Afghan wedding",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_wedding"
+                    },
+                    {
+                        text: "Experience a Korean hanbok fashion show",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_hanbok"
+                    }
+                ]
+            },
+            
+            korean_kimchi: {
+                character: '🥬',
+                background: ['🌶️', '🥒'],
+                text: "You learn the time-honored tradition of making kimchi. The ajumma (aunty) teaches you about fermentation and the importance of this dish in Korean culture.",
+                choices: [
+                    {
+                        text: "Visit a traditional Korean hanok village",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_hanok"
+                    },
+                    {
+                        text: "Explore the markets of Kabul",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_market"
+                    }
+                ]
+            },
+            
+            korean_kpop: {
+                character: '💃',
+                background: ['🎤', '⭐'],
+                text: "You join a high-energy K-pop dance class! The synchronized movements and catchy music are infectious. You're learning a piece of modern Korean culture.",
+                choices: [
+                    {
+                        text: "Visit a PC bang (gaming cafe) for esports",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_gaming"
+                    },
+                    {
+                        text: "Learn Afghan traditional Attan dance",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_attan"
+                    }
+                ]
+            },
+            
+            afghan_music: {
+                character: '🎵',
+                background: ['🎸', '🥁'],
+                text: "You sit with musicians playing the rubab and tabla. The melodies are haunting and beautiful, telling stories of mountains and valleys, love and loss.",
+                choices: [
+                    {
+                        text: "Learn to recite classical Afghan poetry",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_poetry"
+                    },
+                    {
+                        text: "Study Korean calligraphy and poetry",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_calligraphy"
+                    }
+                ]
+            },
+            
+            afghan_history: {
+                character: '🏛️',
+                background: ['⛰️', '📜'],
+                text: "You visit historic sites and learn about Afghanistan's rich history as a crossroads of civilizations. The stories span thousands of years.",
+                choices: [
+                    {
+                        text: "Attend a traditional Afghan jirga (council)",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_ending_wisdom"
+                    },
+                    {
+                        text: "Experience Korean Chuseok harvest festival",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_chuseok"
+                    }
+                ]
+            },
+            
+            korean_palace: {
+                character: '🏯',
+                background: ['👑', '🌸'],
+                text: "You walk through the grand Gyeongbokgung Palace, learning about the Joseon Dynasty. Guards in traditional dress perform the changing ceremony.",
+                choices: [
+                    {
+                        text: "Learn about Korean royal court cuisine",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_royal_food"
+                    },
+                    {
+                        text: "Study Afghan royal history and culture",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_royal"
+                    }
+                ]
+            },
+            
+            afghan_wedding: {
+                character: '💑',
+                background: ['🎊', '🎉'],
+                text: "You attend a vibrant Afghan wedding celebration. The bride's henna is intricate, the food is abundant, and the celebration lasts for days!",
+                choices: [
+                    {
+                        text: "Stay for the traditional Afghan poetry recital",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_ending_celebration"
+                    },
+                    {
+                        text: "Attend a Korean paebaek ceremony",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_wedding"
+                    }
+                ]
+            },
+            
+            korean_hanbok: {
+                character: '👘',
+                background: ['🎨', '✨'],
+                text: "You try on beautiful hanbok in vibrant colors. Each design represents different seasons and occasions. The traditional clothing is elegant and comfortable.",
+                choices: [
+                    {
+                        text: "Participate in a Korean tea ceremony",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_ending_zen"
+                    },
+                    {
+                        text: "Try on traditional Afghan clothing and jewelry",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_clothing"
+                    }
+                ]
+            },
+            
+            korean_hanok: {
+                character: '🏠',
+                background: ['🌳', '🪨'],
+                text: "You stay in a traditional hanok with heated floors (ondol) and paper doors. The architecture harmonizes with nature beautifully.",
+                choices: [
+                    {
+                        text: "Practice Korean meditation in the temple",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_temple"
+                    },
+                    {
+                        text: "Visit an Afghan garden and learn about Persian architecture",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_garden"
+                    }
+                ]
+            },
+            
+            afghan_market: {
+                character: '🛍️',
+                background: ['🧵', '🫖'],
+                text: "The bustling market is full of spices, carpets, and handicrafts. Vendors call out their wares and the air is filled with aromatic scents.",
+                choices: [
+                    {
+                        text: "Learn to bargain and buy Afghan treasures",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_ending_trader"
+                    },
+                    {
+                        text: "Visit Seoul's Namdaemun Market instead",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_market"
+                    }
+                ]
+            },
+            
+            korean_gaming: {
+                character: '🎮',
+                background: ['💻', '🏆'],
+                text: "You experience the phenomenon of Korean esports! The PC bang is packed with players, and you try your hand at popular games.",
+                choices: [
+                    {
+                        text: "Join a Korean gaming tournament",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_ending_modern"
+                    },
+                    {
+                        text: "Learn traditional Afghan board games instead",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_games"
+                    }
+                ]
+            },
+            
+            afghan_attan: {
+                character: '💃',
+                background: ['🎊', '🥁'],
+                text: "You learn the Attan, Afghanistan's national dance. The circular movements and rhythmic steps connect dancers in celebration.",
+                choices: [
+                    {
+                        text: "Perform at an Afghan cultural festival",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_ending_dance"
+                    },
+                    {
+                        text: "Learn Korean folk dance (Buchaechum)",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_folk_dance"
+                    }
+                ]
+            },
+            
+            afghan_poetry: {
+                character: '📖',
+                background: ['✒️', '🌙'],
+                text: "You study the works of Rumi and other great Persian poets. The verses speak of love, spirituality, and the beauty of existence.",
+                choices: [
+                    {
+                        text: "Write your own poem in Dari",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_ending_poet"
+                    },
+                    {
+                        text: "Study Korean sijo poetry form",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_sijo"
+                    }
+                ]
+            },
+            
+            korean_calligraphy: {
+                character: '✍️',
+                background: ['🖌️', '📜'],
+                text: "You learn the art of Korean calligraphy, carefully brushing Hangul characters. Each stroke requires focus and intention.",
+                choices: [
+                    {
+                        text: "Create a scroll of Korean wisdom sayings",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_ending_artist"
+                    },
+                    {
+                        text: "Learn Persian calligraphy instead",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_calligraphy"
+                    }
+                ]
+            },
+            
+            // Ending scenes
+            korean_ending_zen: {
+                character: '🧘',
+                background: ['☮️', '🌸'],
+                text: "Your journey concludes in a peaceful Korean tea ceremony. You've learned the value of mindfulness, respect, and harmony. The master tells you that you now carry the spirit of Korean tradition within you.",
+                choices: [],
+                ending: true
+            },
+            
+            korean_ending_modern: {
+                character: '🌟',
+                background: ['🚀', '💡'],
+                text: "Your journey ends in the heart of modern Korea! You've experienced how tradition and innovation blend seamlessly. You leave with an understanding of how Korea honors its past while embracing the future.",
+                choices: [],
+                ending: true
+            },
+            
+            korean_ending_artist: {
+                character: '🎨',
+                background: ['🖼️', '✨'],
+                text: "Your artistic journey through Korean culture concludes. You've mastered calligraphy and understand the deep connection between art and spirit in Korean tradition. Your scroll will remind you of this wisdom.",
+                choices: [],
+                ending: true
+            },
+            
+            afghan_ending_wisdom: {
+                character: '🕊️',
+                background: ['⛰️', '📚'],
+                text: "Your journey ends in a circle of elders sharing wisdom. You've learned that Afghan culture values community, honor, and the oral tradition of passing knowledge. You carry their stories forward.",
+                choices: [],
+                ending: true
+            },
+            
+            afghan_ending_celebration: {
+                character: '🎉',
+                background: ['❤️', '🌟'],
+                text: "Your journey concludes amid celebration and joy! You've experienced the legendary Afghan hospitality and learned that celebration, family, and togetherness are at the heart of Afghan culture.",
+                choices: [],
+                ending: true
+            },
+            
+            afghan_ending_trader: {
+                character: '🤝',
+                background: ['💰', '🛍️'],
+                text: "Your journey ends as a respected member of the bazaar community. You've learned the art of Afghan commerce and the importance of trust and relationships in business. Your network spans continents!",
+                choices: [],
+                ending: true
+            },
+            
+            afghan_ending_dance: {
+                character: '🎊',
+                background: ['💃', '🥁'],
+                text: "Your journey culminates in a grand performance of the Attan! You've become part of a living tradition that connects Afghans across the world. The rhythm lives in your heart.",
+                choices: [],
+                ending: true
+            },
+            
+            afghan_ending_poet: {
+                character: '🌙',
+                background: ['📖', '✨'],
+                text: "Your journey ends under the stars, reciting poetry with new friends. You've touched the soul of Afghan literature and understand how words can capture the human experience across time.",
+                choices: [],
+                ending: true
+            },
+            
+            // Additional scenes for complete paths
+            korean_chuseok: {
+                character: '🌾',
+                background: ['🌕', '🍚'],
+                text: "You celebrate Chuseok, the Korean harvest festival! Families gather to honor ancestors, share songpyeon (rice cakes), and give thanks. The full moon shines bright.",
+                choices: [
+                    {
+                        text: "Perform ancestral rites with the family",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_ending_zen"
+                    },
+                    {
+                        text: "Join Afghan harvest celebration instead",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_harvest"
+                    }
+                ]
+            },
+            
+            korean_wedding: {
+                character: '💐',
+                background: ['💒', '🎎'],
+                text: "You witness a beautiful Korean paebaek ceremony where the couple bows to elders and receives blessings. The tradition honors family and respect.",
+                choices: [
+                    {
+                        text: "Learn about Korean family values",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_ending_zen"
+                    },
+                    {
+                        text: "Compare with Afghan marriage traditions",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_family"
+                    }
+                ]
+            },
+            
+            korean_temple: {
+                character: '⛩️',
+                background: ['🔔', '🕉️'],
+                text: "You spend time in a Buddhist temple, practicing meditation and learning about Korean spirituality. The peace is profound.",
+                choices: [
+                    {
+                        text: "Stay for a temple stay program",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_ending_zen"
+                    },
+                    {
+                        text: "Visit an Afghan mosque instead",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_mosque"
+                    }
+                ]
+            },
+            
+            korean_market: {
+                character: '🏮',
+                background: ['🍢', '🎎'],
+                text: "Namdaemun Market buzzes with energy! Street food sizzles, vendors shout, and the variety is overwhelming. This is the pulse of Seoul.",
+                choices: [
+                    {
+                        text: "Try every Korean street food",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_ending_modern"
+                    },
+                    {
+                        text: "Head to Afghan market for comparison",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_ending_trader"
+                    }
+                ]
+            },
+            
+            korean_folk_dance: {
+                character: '🪭',
+                background: ['🌸', '🎋'],
+                text: "You learn Buchaechum, the Korean fan dance. The graceful movements with colorful fans create beautiful patterns like flower petals.",
+                choices: [
+                    {
+                        text: "Perform at a Korean cultural show",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_ending_artist"
+                    },
+                    {
+                        text: "Learn Afghan regional dances",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_ending_dance"
+                    }
+                ]
+            },
+            
+            korean_sijo: {
+                character: '🎋',
+                background: ['📜', '🌙'],
+                text: "You study sijo, traditional Korean poetry with three lines. Each poem captures a moment, a feeling, a truth about human nature.",
+                choices: [
+                    {
+                        text: "Write your own sijo",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_ending_artist"
+                    },
+                    {
+                        text: "Compare with Afghan ghazals",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_ending_poet"
+                    }
+                ]
+            },
+            
+            korean_royal_food: {
+                character: '🍱',
+                background: ['👑', '🥘'],
+                text: "You learn about Korean royal court cuisine with its elaborate preparation and presentation. Each dish is a work of art with deep meaning.",
+                choices: [
+                    {
+                        text: "Master the art of Korean royal cooking",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_ending_zen"
+                    },
+                    {
+                        text: "Study Afghan royal dishes instead",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_royal"
+                    }
+                ]
+            },
+            
+            // Afghan additional scenes
+            afghan_royal: {
+                character: '👑',
+                background: ['🏰', '💎'],
+                text: "You learn about Afghan royal history and the diverse dynasties that ruled. The culture of hospitality and honor began in these royal courts.",
+                choices: [
+                    {
+                        text: "Study Afghan royal protocols",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_ending_wisdom"
+                    },
+                    {
+                        text: "Return to Korean palace culture",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_palace"
+                    }
+                ]
+            },
+            
+            afghan_clothing: {
+                character: '👗',
+                background: ['💎', '🧵'],
+                text: "You try on traditional Afghan clothing - vibrant dresses with intricate embroidery and beautiful jewelry. Each region has its own style.",
+                choices: [
+                    {
+                        text: "Learn about Afghan textile traditions",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_ending_trader"
+                    },
+                    {
+                        text: "Compare with Korean traditional dress",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_hanbok"
+                    }
+                ]
+            },
+            
+            afghan_garden: {
+                character: '🌺',
+                background: ['⛲', '🌳'],
+                text: "You walk through a traditional Afghan garden with geometric designs and flowing water. The Persian influence in architecture is clear.",
+                choices: [
+                    {
+                        text: "Study Islamic geometry and design",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_ending_wisdom"
+                    },
+                    {
+                        text: "Visit Korean palace gardens",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_temple"
+                    }
+                ]
+            },
+            
+            afghan_games: {
+                character: '🎲',
+                background: ['♟️', '🎯'],
+                text: "You learn traditional Afghan games that have been played for centuries. Strategy, skill, and social bonding are all important.",
+                choices: [
+                    {
+                        text: "Master traditional Afghan games",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_ending_trader"
+                    },
+                    {
+                        text: "Try Korean traditional games (yutnori)",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_folk_dance"
+                    }
+                ]
+            },
+            
+            afghan_calligraphy: {
+                character: '✒️',
+                background: ['📜', '🌙'],
+                text: "You practice the flowing art of Persian calligraphy. The Arabic script becomes a dance of curves and dots, each letter a meditation.",
+                choices: [
+                    {
+                        text: "Create your own Persian calligraphy piece",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_ending_poet"
+                    },
+                    {
+                        text: "Compare with Korean calligraphy styles",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_ending_artist"
+                    }
+                ]
+            },
+            
+            afghan_harvest: {
+                character: '🌾',
+                background: ['🍇', '🌽'],
+                text: "You participate in an Afghan harvest celebration. Communities come together to gather crops and give thanks for abundance.",
+                choices: [
+                    {
+                        text: "Join the communal feast",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_ending_celebration"
+                    },
+                    {
+                        text: "Return to Korean Chuseok traditions",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_chuseok"
+                    }
+                ]
+            },
+            
+            afghan_family: {
+                character: '👨‍👩‍👧‍👦',
+                background: ['❤️', '🏠'],
+                text: "You spend time with an Afghan family and learn about the deep importance of family ties, respect for elders, and generational wisdom.",
+                choices: [
+                    {
+                        text: "Embrace Afghan family values",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_ending_wisdom"
+                    },
+                    {
+                        text: "Compare with Korean family culture",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_ending_zen"
+                    }
+                ]
+            },
+            
+            afghan_mosque: {
+                character: '🕌',
+                background: ['🌙', '⭐'],
+                text: "You visit a beautiful Afghan mosque with intricate tile work and peaceful courtyards. The call to prayer echoes through the air.",
+                choices: [
+                    {
+                        text: "Learn about Islamic traditions in Afghanistan",
+                        label: "🇦🇫 Afghan Path",
+                        type: "afghan",
+                        next: "afghan_ending_wisdom"
+                    },
+                    {
+                        text: "Visit Korean Buddhist temple",
+                        label: "🇰🇷 Korean Path",
+                        type: "korean",
+                        next: "korean_ending_zen"
+                    }
+                ]
+            }
+        };
+
+        function renderScene(sceneKey) {
+            const scene = scenes[sceneKey];
+            const container = document.getElementById('sceneContainer');
+            
+            let html = `
+                <div class="character-display">
+                    <div class="scene-background">
+                        ${scene.background.map(emoji => `<span>${emoji}</span>`).join('')}
+                    </div>
+                    <div class="character">${scene.character}</div>
+                </div>
+                
+                <div class="story-text">${scene.text}</div>
+            `;
+            
+            if (scene.ending) {
+                html += `
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-label">Korean Choices</div>
+                            <div class="stat-value" style="color: #ff6b6b;">${gameState.koreanChoices}</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Afghan Choices</div>
+                            <div class="stat-value" style="color: #4ecdc4;">${gameState.afghanChoices}</div>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <button class="restart-btn" onclick="restartGame()">Start New Journey</button>
+                    </div>
+                `;
+            } else {
+                html += '<div class="choices">';
+                scene.choices.forEach((choice, index) => {
+                    const btnClass = choice.type === 'korean' ? 'korean-choice' : 'afghan-choice';
+                    html += `
+                        <button class="choice-btn ${btnClass}" onclick="makeChoice('${choice.next}', '${choice.type}')">
+                            <span class="choice-label">${choice.label}</span>
+                            ${choice.text}
+                        </button>
+                    `;
+                });
+                html += '</div>';
+            }
+            
+            container.innerHTML = html;
+        }
+
+        function makeChoice(nextScene, choiceType) {
+            if (choiceType === 'korean') {
+                gameState.koreanChoices++;
+            } else {
+                gameState.afghanChoices++;
+            }
+            
+            gameState.path.push(nextScene);
+            gameState.currentScene = nextScene;
+            renderScene(nextScene);
+        }
+
+        function restartGame() {
+            gameState.currentScene = 'start';
+            gameState.koreanChoices = 0;
+            gameState.afghanChoices = 0;
+            gameState.path = [];
+            renderScene('start');
+        }
+
+        // Initialize the game
+        renderScene('start');
+    </script>
+</body>
+</html>
