@@ -234,7 +234,7 @@
   <body>
     <div class="container">
       <div class="header">
-        <h1> Cultural Journey </h1>
+        <h1>Cultural Journey</h1>
         <p>A Tale of Two Worlds: Korean & Afghan</p>
       </div>
 
@@ -427,7 +427,7 @@
             {
               text: "Experience Korean Chuseok harvest festival",
               type: "korean",
-              next: "korean_chuseok",
+              next: "korean_ending_zen",
             },
           ],
         },
@@ -440,12 +440,12 @@
             {
               text: "Learn about Korean royal court cuisine",
               type: "korean",
-              next: "korean_royal_food",
+              next: "korean_ending_zen",
             },
             {
               text: "Study Afghan royal history and culture",
               type: "afghan",
-              next: "afghan_royal",
+              next: "afghan_ending_wisdom",
             },
           ],
         },
@@ -463,7 +463,7 @@
             {
               text: "Attend a Korean paebaek ceremony",
               type: "korean",
-              next: "korean_wedding",
+              next: "korean_ending_zen",
             },
           ],
         },
@@ -481,7 +481,7 @@
             {
               text: "Try on traditional Afghan clothing and jewelry",
               type: "afghan",
-              next: "afghan_clothing",
+              next: "afghan_ending_celebration",
             },
           ],
         },
@@ -494,12 +494,12 @@
             {
               text: "Practice Korean meditation in the temple",
               type: "korean",
-              next: "korean_temple",
+              next: "korean_ending_zen",
             },
             {
               text: "Visit an Afghan garden and learn about Persian architecture",
               type: "afghan",
-              next: "afghan_garden",
+              next: "afghan_ending_wisdom",
             },
           ],
         },
@@ -517,7 +517,7 @@
             {
               text: "Visit Seoul's Namdaemun Market instead",
               type: "korean",
-              next: "korean_market",
+              next: "korean_ending_modern",
             },
           ],
         },
@@ -535,7 +535,7 @@
             {
               text: "Learn traditional Afghan board games instead",
               type: "afghan",
-              next: "afghan_games",
+              next: "afghan_ending_celebration",
             },
           ],
         },
@@ -589,7 +589,7 @@
             {
               text: "Learn Persian calligraphy instead",
               type: "afghan",
-              next: "afghan_calligraphy",
+              next: "afghan_ending_poet",
             },
           ],
         },
@@ -665,278 +665,6 @@
           choices: [],
           ending: true,
           image: "assets/afghan-poet.jpg",
-        },
-
-        // Additional scenes for complete paths
-        korean_chuseok: {
-          character: "🌾",
-          background: ["🌕", "🍚"],
-          text: "You celebrate Chuseok, the Korean harvest festival! Families gather to honor ancestors, share songpyeon (rice cakes), and give thanks. The full moon shines bright.",
-          choices: [
-            {
-              text: "Perform ancestral rites with the family",
-              type: "korean",
-              next: "korean_ending_zen",
-            },
-            {
-              text: "Join Afghan harvest celebration instead",
-              type: "afghan",
-              next: "afghan_harvest",
-            },
-          ],
-        },
-
-        korean_wedding: {
-          character: "💐",
-          background: ["💒", "🎎"],
-          text: "You witness a beautiful Korean paebaek ceremony where the couple bows to elders and receives blessings. The tradition honors family and respect.",
-          choices: [
-            {
-              text: "Learn about Korean family values",
-              type: "korean",
-              next: "korean_ending_zen",
-            },
-            {
-              text: "Compare with Afghan marriage traditions",
-              type: "afghan",
-              next: "afghan_family",
-            },
-          ],
-        },
-
-        korean_temple: {
-          character: "⛩️",
-          background: ["🔔", "🕉️"],
-          text: "You spend time in a Buddhist temple, practicing meditation and learning about Korean spirituality. The peace is profound.",
-          choices: [
-            {
-              text: "Stay for a temple stay program",
-              type: "korean",
-              next: "korean_ending_zen",
-            },
-            {
-              text: "Visit an Afghan mosque instead",
-              type: "afghan",
-              next: "afghan_mosque",
-            },
-          ],
-        },
-
-        korean_market: {
-          character: "🏮",
-          background: ["🍢", "🎎"],
-          text: "Namdaemun Market buzzes with energy! Street food sizzles, vendors shout, and the variety is overwhelming. This is the pulse of Seoul.",
-          choices: [
-            {
-              text: "Try every Korean street food",
-              type: "korean",
-              next: "korean_ending_modern",
-            },
-            {
-              text: "Head to Afghan market for comparison",
-              type: "afghan",
-              next: "afghan_ending_trader",
-            },
-          ],
-        },
-
-        korean_folk_dance: {
-          character: "🪭",
-          background: ["🌸", "🎋"],
-          text: "You learn Buchaechum, the Korean fan dance. The graceful movements with colorful fans create beautiful patterns like flower petals.",
-          choices: [
-            {
-              text: "Perform at a Korean cultural show",
-              type: "korean",
-              next: "korean_ending_artist",
-            },
-            {
-              text: "Learn Afghan regional dances",
-              type: "afghan",
-              next: "afghan_ending_dance",
-            },
-          ],
-        },
-
-        korean_sijo: {
-          character: "🎋",
-          background: ["📜", "🌙"],
-          text: "You study sijo, traditional Korean poetry with three lines. Each poem captures a moment, a feeling, a truth about human nature.",
-          choices: [
-            {
-              text: "Write your own sijo",
-              type: "korean",
-              next: "korean_ending_artist",
-            },
-            {
-              text: "Compare with Afghan ghazals",
-              type: "afghan",
-              next: "afghan_ending_poet",
-            },
-          ],
-        },
-
-        korean_royal_food: {
-          character: "🍱",
-          background: ["👑", "🥘"],
-          text: "You learn about Korean royal court cuisine with its elaborate preparation and presentation. Each dish is a work of art with deep meaning.",
-          choices: [
-            {
-              text: "Master the art of Korean royal cooking",
-              type: "korean",
-              next: "korean_ending_zen",
-            },
-            {
-              text: "Study Afghan royal dishes instead",
-              type: "afghan",
-              next: "afghan_royal",
-            },
-          ],
-        },
-
-        // Afghan additional scenes
-        afghan_royal: {
-          character: "👑",
-          background: ["🏰", "💎"],
-          text: "You learn about Afghan royal history and the diverse dynasties that ruled. The culture of hospitality and honor began in these royal courts.",
-          choices: [
-            {
-              text: "Study Afghan royal protocols",
-              type: "afghan",
-              next: "afghan_ending_wisdom",
-            },
-            {
-              text: "Return to Korean palace culture",
-              type: "korean",
-              next: "korean_palace",
-            },
-          ],
-        },
-
-        afghan_clothing: {
-          character: "👗",
-          background: ["💎", "🧵"],
-          text: "You try on traditional Afghan clothing - vibrant dresses with intricate embroidery and beautiful jewelry. Each region has its own style.",
-          choices: [
-            {
-              text: "Learn about Afghan textile traditions",
-              type: "afghan",
-              next: "afghan_ending_trader",
-            },
-            {
-              text: "Compare with Korean traditional dress",
-              type: "korean",
-              next: "korean_hanbok",
-            },
-          ],
-        },
-
-        afghan_garden: {
-          character: "🌺",
-          background: ["⛲", "🌳"],
-          text: "You walk through a traditional Afghan garden with geometric designs and flowing water. The Persian influence in architecture is clear.",
-          choices: [
-            {
-              text: "Study Islamic geometry and design",
-              type: "afghan",
-              next: "afghan_ending_wisdom",
-            },
-            {
-              text: "Visit Korean palace gardens",
-              type: "korean",
-              next: "korean_temple",
-            },
-          ],
-        },
-
-        afghan_games: {
-          character: "🎲",
-          background: ["♟️", "🎯"],
-          text: "You learn traditional Afghan games that have been played for centuries. Strategy, skill, and social bonding are all important.",
-          choices: [
-            {
-              text: "Master traditional Afghan games",
-              type: "afghan",
-              next: "afghan_ending_trader",
-            },
-            {
-              text: "Try Korean traditional games (yutnori)",
-              type: "korean",
-              next: "korean_folk_dance",
-            },
-          ],
-        },
-
-        afghan_calligraphy: {
-          character: "✒️",
-          background: ["📜", "🌙"],
-          text: "You practice the flowing art of Persian calligraphy. The Arabic script becomes a dance of curves and dots, each letter a meditation.",
-          choices: [
-            {
-              text: "Create your own Persian calligraphy piece",
-              type: "afghan",
-              next: "afghan_ending_poet",
-            },
-            {
-              text: "Compare with Korean calligraphy styles",
-              type: "korean",
-              next: "korean_ending_artist",
-            },
-          ],
-        },
-
-        afghan_harvest: {
-          character: "🌾",
-          background: ["🍇", "🌽"],
-          text: "You participate in an Afghan harvest celebration. Communities come together to gather crops and give thanks for abundance.",
-          choices: [
-            {
-              text: "Join the communal feast",
-              type: "afghan",
-              next: "afghan_ending_celebration",
-            },
-            {
-              text: "Return to Korean Chuseok traditions",
-              type: "korean",
-              next: "korean_chuseok",
-            },
-          ],
-        },
-
-        afghan_family: {
-          character: "👨‍👩‍👧‍👦",
-          background: ["❤️", "🏠"],
-          text: "You spend time with an Afghan family and learn about the deep importance of family ties, respect for elders, and generational wisdom.",
-          choices: [
-            {
-              text: "Embrace Afghan family values",
-              type: "afghan",
-              next: "afghan_ending_wisdom",
-            },
-            {
-              text: "Compare with Korean family culture",
-              type: "korean",
-              next: "korean_ending_zen",
-            },
-          ],
-        },
-
-        afghan_mosque: {
-          character: "🕌",
-          background: ["🌙", "⭐"],
-          text: "You visit a beautiful Afghan mosque with intricate tile work and peaceful courtyards. The call to prayer echoes through the air.",
-          choices: [
-            {
-              text: "Learn about Islamic traditions in Afghanistan",
-              type: "afghan",
-              next: "afghan_ending_wisdom",
-            },
-            {
-              text: "Visit Korean Buddhist temple",
-              type: "korean",
-              next: "korean_ending_zen",
-            },
-          ],
         },
       };
 
