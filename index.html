@@ -70,6 +70,15 @@
       .character {
         font-size: 120px;
         animation: fadeIn 0.5s ease-in;
+        z-index: 10;
+      }
+
+      .character-image {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        animation: fadeIn 0.5s ease-in;
+        border-radius: 10px;
       }
 
       .scene-background {
@@ -82,7 +91,13 @@
         justify-content: space-around;
         align-items: center;
         font-size: 60px;
-        opacity: 0.3;
+        opacity: 0.8;
+      }
+
+      .scene-background img {
+        max-height: 80%;
+        max-width: 45%;
+        object-fit: contain;
       }
 
       .story-text {
@@ -254,7 +269,7 @@
       const scenes = {
         start: {
           character: "🧑",
-          background: ["/assets/korean/morningtea.png", "🏔️"],
+          background: ["./assets/korean/morningtea.png", "🏔️"],
           text: "You wake up in a mystical place between two worlds. To your left, you see cherry blossoms and traditional temples. To your right, you see mountain peaks and ornate carpets. You must choose your path...",
           choices: [
             {
@@ -679,10 +694,22 @@
                         ? `<img src="${scene.image}" alt="${scene.ending}" class="result-image">`
                         : `<div class="scene-background">
                             ${scene.background
-                              .map((emoji) => `<span>${emoji}</span>`)
+                              .map((item) => {
+                                if (item.includes(".") || item.includes("/")) {
+                                  return `<img src="${item}" alt="scene">`;
+                                } else {
+                                  return `<span>${item}</span>`;
+                                }
+                              })
                               .join("")}
                         </div>
-                        <div class="character">${scene.character}</div>`
+                        ${
+                          scene.character &&
+                          (scene.character.includes(".") ||
+                            scene.character.includes("/"))
+                            ? `<img src="${scene.character}" alt="character" class="character-image">`
+                            : `<div class="character">${scene.character}</div>`
+                        }`
                     }
                 </div>
                 
